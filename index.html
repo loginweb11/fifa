@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <title>بطاقة فيفا</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+        * {
+            font-family: "Rubik", sans-serif;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .main {
+            width: fit-content;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px black;
+        }
+
+        .main .icon {
+            width: 350px;
+            margin-top: 7px;
+        }
+
+        .img {
+            position: absolute;
+            z-index: 99;
+            top: 20%;
+            left: 40%;
+            width: 170px;
+            height: 170px;
+            opacity: 0.9;
+            border-radius: 10px;
+        }
+
+        .name {
+            position: absolute;
+            top: 59%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(80 67 40);
+            font-size: 33px;
+        }
+
+        .rat {
+            position: absolute;
+            top: 25%;
+            font-size: 44px;
+            font-family: Arial, Helvetica, sans-serif;
+            transform: translate(-50%, -50%);
+            left: 27%;
+            color: rgb(80 67 40);
+        }
+
+        .pos {
+            position: absolute;
+            top: 33%;
+            transform: translate(-50%, -50%);
+            left: 27%;
+            color: rgb(80 67 40);
+            font-size: 30px;
+            font-weight: 600;
+            font-family: Helvetica, sans-serif;
+        }
+
+        .pac {
+            position: absolute;
+            top: 67.8%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: rgb(80 67 40);
+            font-size: 33px;
+        }
+
+        .sho {
+            position: absolute;
+            top: 74%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: rgb(80 67 40);
+            font-size: 33px;
+        }
+
+        .pas {
+            position: absolute;
+            top: 81%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: rgb(80 67 40);
+            font-size: 33px;
+        }
+
+        .dri {
+            position: absolute;
+            top: 67.8%;
+            left: 64%;
+            transform: translate(-50%, -50%);
+            color: rgb(80 67 40);
+            font-size: 33px;
+        }
+
+        .def {
+            position: absolute;
+            top: 74%;
+            left: 64%;
+            transform: translate(-50%, -50%);
+            color: rgb(80 67 40);
+            font-size: 33px;
+        }
+
+        .phy {
+            position: absolute;
+            top: 81%;
+            left: 64%;
+            transform: translate(-50%, -50%);
+            color: rgb(80 67 40);
+            font-size: 33px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <img class="icon" src="./Icon.jpg">
+        <label id="FileinputLabel" for="file-input">
+            <input style="display: none;" type="file" id="file-input">
+            <img id="selected-image" class="img" src="./match image.png">
+        </label>
+        <p contenteditable="true" class="name">??</p>
+        <p contenteditable="true" class="rat">??</p>
+        <p contenteditable="true" class="pos">??</p>
+        <p contenteditable="true" class="pac">??</p>
+        <p contenteditable="true" class="sho">??</p>
+        <p contenteditable="true" class="pas">??</p>
+        <p contenteditable="true" class="dri">??</p>
+        <p contenteditable="true" class="def">??</p>
+        <p contenteditable="true" class="phy">??</p>
+    </div>
+    <script>
+        let savedImageUrl = localStorage.getItem('savedImage');
+        let fileInput = document.getElementById('file-input');
+        let selectedImage = document.getElementById('selected-image');
+
+        fileInput.addEventListener('change', function (e) {
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                let imageUrl = e.target.result;
+                selectedImage.src = imageUrl;
+                localStorage.setItem('savedImage', imageUrl);
+                localStorage.setItem('YourImage', "true");
+                setTimeout(function () {
+                    window.location.reload();
+                }, 300);
+            }
+            reader.readAsDataURL(file);
+        });
+
+        if (savedImageUrl) {
+            selectedImage.src = savedImageUrl;
+            massageImage.src = savedImageUrl;
+        }
+
+        if (window.localStorage.getItem("YourImage") === "true") {
+            FileinputLabel.style.backgroundColor = "transparent";
+            FileinputLabel.style.color = "transparent";
+        } else {
+            FileinputLabel.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+            FileinputLabel.style.color = "rgba(14 16 25)";
+        }
+    </script>
+</body>
+
+</html>
